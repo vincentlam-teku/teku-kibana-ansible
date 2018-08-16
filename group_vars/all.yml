@@ -5,3 +5,6 @@ wget_kibana_rpm_url: https://artifacts.elastic.co/downloads/kibana/kibana-6.3.2-
 
 kibana_rpm: kibana-6.3.2-x86_64.rpm
 
+wget_elasticsearch_rpm_url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.rpm
+
+elasticsearch_rpm: elasticsearch-6.3.2.rpm

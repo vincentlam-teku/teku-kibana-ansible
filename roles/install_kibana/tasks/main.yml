@@ -1,6 +1,14 @@
 ---
 # This playbook contains plays to install Grafana and its dependencies
 #
+- name: Download Elastic Search RPM and install locally as a dependancy for Kibana
+  get_url: url={{ wget_elasticsearch_rpm_url }} dest=/var/tmp/ owner=root group=root mode=0644
+
+- name: Install Elastic Search RPM Package
+  yum:
+   name: /var/tmp/{{ elasticsearch_rpm }}
+   state: installed
+
 - name: Download Kibana RPM
   get_url: url={{ wget_kibana_rpm_url }} dest=/var/tmp/ owner=root group=root mode=0644
 
@@ -9,8 +17,14 @@
    name: /var/tmp/{{ kibana_rpm }}
    state: installed
 
+- name: Use Chkconfig to start ElasticSearch automatically when the system boots up
+  shell: sudo chkconfig --add elasticsearch
+
 - name: Use Chkconfig to start Kibana automatically when the system boots up
   shell: sudo chkconfig --add kibana
 
-- name: Start Grafana - Web Port is 3000 
+- name: Start ElasticSearch 
+  command: sudo -i service elasticsearch start
+
+- name: Start Kibana - Web Port is 5601 
   command: sudo -i service kibana start
