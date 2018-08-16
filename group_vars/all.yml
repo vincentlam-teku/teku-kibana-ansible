@@ -1,0 +1,7 @@
+---
+# MANDATORY - MUST BE CORRECT FOR DEPLOYMENT #
+
+wget_kibana_rpm_url: https://artifacts.elastic.co/downloads/kibana/kibana-6.3.2-x86_64.rpm
+
+kibana_rpm: kibana-6.3.2-x86_64.rpm
+

@@ -1,0 +1,16 @@
+---
+# This playbook contains plays to install Grafana and its dependencies
+#
+- name: Download Kibana RPM
+  get_url: url={{ wget_kibana_rpm_url }} dest=/var/tmp/ owner=root group=root mode=0644
+
+- name: Install Kibana RPM package
+  yum:
+   name: /var/tmp/{{ kibana_rpm }}
+   state: installed
+
+- name: Use Chkconfig to start Kibana automatically when the system boots up
+  shell: sudo chkconfig --add kibana
+
+- name: Start Grafana - Web Port is 3000 
+  command: sudo -i service kibana start

@@ -1,0 +1,9 @@
+- name: Configure OS and install Kibana
+  vars: 
+    description: 'Install Kibana'
+  hosts: kibana
+  remote_user: centos
+  become: yes
+
+  roles:
+    - install_kibana
